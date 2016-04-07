@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/bootstrap-3.3.6-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/user.css">
+    <title>User</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Coffee Machine</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="inactive"><a href="/users">Users</a></li>
+            <li class="inactive"><a href="/users/new">Create user</a></li>
+            <li class="active"><a href=""><%= username %></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-7">
+            <div class="info-box user">
+              <div class="user-name"><%= username %></div>
+              <div class="user-score">
+                <div class="user-score-label">Leader Board Position</div>
+                <%= score %> <span>points</span>
+              </div>
+              <div class="user-position">
+                21<span> st</span>
+              </div>
+              <div class="user-quote">
+                "I AM... BATMAN!"
+              </div>
+            </div>
+            <div class="info-box">
+              <h1>Coffees</h1>
+            </div>
+            <div class="info-box">
+              <table>
+                <tbody>
+                  <% user_coffees.each do |coffee| %>
+                  <tr>
+                    <td>
+                      <%=  coffee[:participant_name] %>
+                    </td>
+                    <td>
+                      <%= Time.at(coffee[:date]).strftime("%d %b %Y") %>
+                    </td>
+                  </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <div class="info-box">
+              <h1>Register coffee</h1>
+            </div>
+            <form class="form" method="post">
+              <div class='ticket'>
+                <h1>The Coffee Machine</h1>
+                <div class="ticket_info">
+                  <span>Coffees for <%= username %> and &nbsp</span>
+                  <select name="participant">
+                    <option value="" disabled selected>Select participant</option>
+                    <% participants.each do |participant| %>
+                      <option value="<%= participant[:id] %>"><%= participant[:username]%></option>
+                    <% end %>
+                  </select>
+                  <span>&nbsp on &nbsp</span>
+                  <input id="date_picker" type="date" name="date">
+                </div>
+                <div class='ticket_bottom'>
+                  <input type="submit" value="Submit">
+                </div>
+              </div>
+            </form>
+            <div class="info-box">
+              <h1>Missions</h1>
+            </div>
+            <div class="mission">
+                <img src="/images/coffee-icon-row-block.png"/>
+                <div class="info-box">
+                  Register your first coffee
+                </div>
+            </div>
+            <div class="mission">
+                <img src="/images/coffee-icon-row-block.png"/>
+                <div class="info-box">
+                  Have five coffees the same week
+                </div>
+            </div>
+            <div class="mission">
+                <img src="/images/coffee-icon-row-block.png"/>
+                <div class="info-box">
+                  Score more than a thousand points in a coffee
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

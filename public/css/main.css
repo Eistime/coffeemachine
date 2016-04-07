@@ -1,0 +1,57 @@
+body {
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #795548;
+}
+
+.navbar-inverse {
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  text-shadow: 2px 0px rgba(0, 0, 0, 0.7);
+}
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus{
+  background-color: rgba(255,165,0, 0.6);
+}
+
+.table a {
+  text-decoration: none !important;
+  color: white;
+}
+
+.row {
+  text-shadow: 2px 0px rgba(0, 0, 0, 0.7);
+  font-weight: lighter;
+}
+
+.info-box {
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  margin-bottom: 15px;
+}
+
+.info-box table {
+  width: 100%;
+  border-collapse:collapse;
+}
+
+.info-box tr {
+  list-style: none;
+  padding: 5px 10px;
+}
+
+.info-box tr:hover {
+  background: rgba(255,165,0, 0.6);
+}
+
+.info-box td + td {
+  text-align: right;
+}
+
+.info-box {
+  padding: 10px;
+}
+
+.info-box h1 {
+  text-align: center;
+}
