@@ -18,9 +18,9 @@ describe UserController do
     @user_controller = UserController.new @coffees_model, @users_model, @score_calculator
     @one_day = 86400;
     @db.execute <<-SQL
-        INSERT INTO users (username, password)
-        VALUES ("Galactus", "user_password"),
-                ("Sabertooth", "user_password");
+        INSERT INTO users (username, password, quote)
+        VALUES ("Galactus", "user_password", "How can one such as you help one such as I?"),
+                ("Sabertooth", "user_password", "You owe me a scream.");
     SQL
 
     @db.execute <<-SQL
@@ -36,6 +36,11 @@ describe UserController do
     it "should return the username of user_id passed on params" do
       user_id = 1
       expect((@user_controller.get_user user_id)[:username] ).to eq('Galactus')
+    end
+
+    it "should return the user quote of user_id passed on params" do
+      user_id = 1
+      expect((@user_controller.get_user user_id)[:quote]).to eq('How can one such as you help one such as I?')
     end
 
     it "should return the user score" do
@@ -54,7 +59,7 @@ describe UserController do
 
     it "should return the participants without the current user" do
       user_id = 1
-      participants = [{:id => 2, :username => "Sabertooth"}]
+      participants = [{id: 2, username: "Sabertooth", quote: 'You owe me a scream.'}]
       expect((@user_controller.get_user user_id)[:participants]).to eq(participants)
 
     end

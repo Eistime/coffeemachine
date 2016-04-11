@@ -25,7 +25,7 @@ class UsersController
   end
 
   def post_users_new params
-    success = @users_model.create(params['username'], params['password'])
+    success = @users_model.create(params['username'], params['password'], params['quote'])
     view_locals = {:user_duplicated => !success, :user_created => success}
   end
 

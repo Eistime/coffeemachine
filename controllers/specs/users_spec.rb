@@ -11,9 +11,9 @@ describe UsersController do
     @users_controller = UsersController.new @users_model
 
     @db.execute <<-SQL
-        INSERT INTO users (username, password)
-        VALUES ("Galactus", "user_password"),
-                ("Sabertooth", "user_password");
+        INSERT INTO users (username, password, quote)
+        VALUES ("Galactus", "user_password", "How can one such as you help one such as I?"),
+                ("Sabertooth", "user_password", "You owe me a scream.");
     SQL
 
   end
@@ -21,8 +21,8 @@ describe UsersController do
   describe "get_users()" do
 
     it "should return the users list to params" do
-      expected_view_values = {users: [{:id => 1, :username=> 'Galactus'},
-                                      {:id => 2, :username=> 'Sabertooth'}]}
+      expected_view_values = {users: [{id: 1, username: 'Galactus', quote: 'How can one such as you help one such as I?'},
+                                      {id: 2, username: 'Sabertooth', quote: 'You owe me a scream.'}]}
       expect((@users_controller.get_users)).to eq(expected_view_values)
     end
 
@@ -30,9 +30,9 @@ describe UsersController do
 
   describe "get_users_edit()" do
 
-    it "should return the user id and username" do
+    it "should return the user id, username and quote" do
       params = {"id" => "1"}
-      view_values = {:id => 1, :username=> 'Galactus'}
+      view_values = {id: 1, username: 'Galactus', quote: 'How can one such as you help one such as I?'}
       expect(@users_controller.get_users_edit params).to eq(view_values)
     end
 
@@ -71,11 +71,11 @@ describe UsersController do
   describe "post_users_new()" do
 
     it "Should return user_duplicated false and user_created details" do
-      params = {"username" => "Deathstroke", "password" => "deadlypassword"}
+      params = {"username" => "Deathstroke", "password" => "deadlypassword", "quote" => "Not without a fight."}
       success = @users_controller.post_users_new params
 
       if count = @db.execute("SELECT count(*) FROM users WHERE username = 'Deathstroke'")[0][0] == 1
-        created_user_details = {:id=>3, :username=>"Deathstroke"}
+        created_user_details = {id: 3, username: 'Deathstroke', quote: 'Not without a fight.' }
       end
 
       expected_view_locals = {:user_duplicated => false, :user_created => created_user_details}

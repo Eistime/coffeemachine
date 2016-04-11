@@ -22,6 +22,7 @@ class UserController
 
     user_data = {
       username: user[:username],
+      quote: user[:quote],
       score: score,
       user_coffees: user_coffees,
       participants: participants

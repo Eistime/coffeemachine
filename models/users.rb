@@ -6,33 +6,32 @@ class Users
 
   def get_list
     users = []
-    @db.execute( "select id, username from users" ) do |row|
-      user = row_to_user row
-      users << user
+    @db.execute( "select * from users" ) do |row|
+      users << row_to_user(row)
     end
     users
   end
 
-  def create(new_user, new_user_password)
+  def create(new_user, new_user_password, user_quote)
 
     if (user_exists? new_user)
       return false
     end
 
     @db.execute <<-SQL
-        INSERT INTO users (username, password)
-        VALUES ("#{new_user}", "#{new_user_password}")
+        INSERT INTO users (username, password, quote)
+        VALUES ("#{new_user}", "#{new_user_password}", "#{user_quote}")
     SQL
 
     result = @db.execute <<-SQL
-        SELECT id, username FROM users WHERE username = "#{new_user}";
+        SELECT * FROM users WHERE username = "#{new_user}";
     SQL
 
     created_user = row_to_user result[0]
   end
 
   def row_to_user row
-    {:id => row[0], :username => row[1]}
+    {:id => row[0], :username => row[1], :quote => row[3]}
   end
 
   def user_exists? username
