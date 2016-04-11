@@ -9,20 +9,15 @@
     <title>User</title>
   </head>
   <body>
-    <nav class="navbar navbar-inverse">
+    <!-- <nav class="navbar navbar-inverse">
       <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">Coffee Machine</a>
-        </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="inactive"><a href="/users">Users</a></li>
-            <li class="inactive"><a href="/users/new">Create user</a></li>
             <li class="active"><a href=""><%= username %></a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+          </ul> -->
+        <!--</div>/.nav-collapse -->
+      <!-- </div> -->
+    <!-- </nav> -->
 
     <div class="container">
       <div class="row">
@@ -37,7 +32,7 @@
                 21<span> st</span>
               </div>
               <div class="user-quote">
-                "I AM... BATMAN!"
+                "<%= username %>'s quote'"
               </div>
             </div>
             <div class="info-box">
