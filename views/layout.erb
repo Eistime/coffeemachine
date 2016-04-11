@@ -11,6 +11,12 @@
           <ul class="nav navbar-nav">
             <li><a href="/users">Users</a></li>
             <li><a href="/users/new">Create user</a></li>
+            <% if defined? username %>
+              <li><a href=""><%= username %></a></li>
+            <% end %>
+            <% if !defined? username %>
+              <li><a href="">Login</a></li>
+            <% end %>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
